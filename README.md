@@ -1,3 +1,8 @@
+# Description
+
+Playground react app which uses graphql API to fetch different information. 
+For list of public graphql APIs available visit https://stepzen.com/blog/free-public-graphql-apis. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
