@@ -1,8 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import CountriesEntryItemList from './components/CountriesEntryItemList';
-import logo from './logo.svg';
-import './App.css';
 
 export interface Item {
   id: number
