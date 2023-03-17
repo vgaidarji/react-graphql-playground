@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,9 +6,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Item } from "../App";
+import { Countries } from "../types/Country";
+import { GET_COUNTRIES } from '../graphql';
+import { useQuery } from "@apollo/react-hooks";
+import { Country } from "../types/Country";
 
-const CountriesEntryItemList = (props: { items: Item[]; }) => {
+type Props = {
+  countries: Countries;
+};
+
+const CountriesList: React.FC = () => {
+  const { loading, error, data } = useQuery<Countries>(GET_COUNTRIES);
+
+  if (loading) return <h1>Loading...</h1>;
+  if (error) return <h1>Something went wrong!</h1>;
+
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: theme.palette.common.black,
@@ -31,16 +41,14 @@ const CountriesEntryItemList = (props: { items: Item[]; }) => {
         },
       }));
 
-    const lists = props.items.map((item : Item) =>
-        <StyledTableRow key={item.id}>
+    const countriesList = data?.countries.map((item : Country) =>
+        <StyledTableRow key={item.name}>
             <StyledTableCell component="th" scope="row">
                 {item.name}
             </StyledTableCell>
-            <StyledTableCell align="right">{item.amount}</StyledTableCell>
-            <StyledTableCell align="right">
-                {new Date(item.spendDate).toDateString()}
-            </StyledTableCell>
-            <StyledTableCell align="right">{item.category}</StyledTableCell>
+            <StyledTableCell align="right">{item.capital}</StyledTableCell>
+            <StyledTableCell align="right">{item.code}</StyledTableCell>
+            <StyledTableCell align="right">{item.emoji}</StyledTableCell>
         </StyledTableRow>
     );
     return (
@@ -48,18 +56,18 @@ const CountriesEntryItemList = (props: { items: Item[]; }) => {
             <Table aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell>Title</StyledTableCell>
-                        <StyledTableCell align="right">Amount</StyledTableCell>
-                        <StyledTableCell align="right">Spend date</StyledTableCell>
-                        <StyledTableCell align="right">Category</StyledTableCell>
+                        <StyledTableCell>Name</StyledTableCell>
+                        <StyledTableCell align="right">Capital</StyledTableCell>
+                        <StyledTableCell align="right">Code</StyledTableCell>
+                        <StyledTableCell align="right">Emoji</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {lists}
+                    {countriesList}
                 </TableBody>
             </Table>
         </TableContainer>
       )
 }
 
-export default CountriesEntryItemList;
+export default CountriesList;
