@@ -6,17 +6,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Countries } from "../types/Country";
-import { GET_COUNTRIES } from '../graphql';
+import { Countries } from "../../types/Countries";
+import { GET_COUNTRIES } from './countriesGqlQuery';
+import { GET_COUNTRY } from '../Country/countryGqlQuery';
 import { useQuery } from "@apollo/react-hooks";
-import { Country } from "../types/Country";
-
-type Props = {
-  countries: Countries;
-};
+import { Country } from "../../types/Country";
 
 const CountriesList: React.FC = () => {
-  const { loading, error, data } = useQuery<Countries>(GET_COUNTRIES);
+  // const { loading, error, data } = useQuery(GET_COUNTRY, { 
+  //   variables: { countryCode: "MD" }, 
+  // });
+   const { loading, error, data } = useQuery<Countries>(GET_COUNTRIES);
+
+  console.log(data);
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Something went wrong!</h1>;
@@ -51,6 +53,7 @@ const CountriesList: React.FC = () => {
             <StyledTableCell align="right">{item.emoji}</StyledTableCell>
         </StyledTableRow>
     );
+
     return (
         <TableContainer component={Paper}>
             <Table aria-label="customized table">

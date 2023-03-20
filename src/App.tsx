@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import CountriesList from './components/CountriesList';
+import CountriesList from './components/Countries/CountriesList';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 
 const client = new ApolloClient({

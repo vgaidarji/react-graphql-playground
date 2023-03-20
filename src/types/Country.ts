@@ -4,7 +4,3 @@ export interface Country {
     capital: string;
     emoji: string;
 }
-
-export interface Countries {
-    countries: Country[];
-}
