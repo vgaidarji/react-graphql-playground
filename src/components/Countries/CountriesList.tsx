@@ -16,7 +16,7 @@ import { Country } from "../../types/Country";
 const CountriesList: React.FC = () => {
   const navigate = useNavigate();
   const { loading, error, data } = useQuery<Countries>(GET_COUNTRIES);
-  
+
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Something went wrong!</h1>;
 
@@ -41,8 +41,12 @@ const CountriesList: React.FC = () => {
     }));
 
     
-    function handleCountryClick(countr: Country) {
-      navigate("/country");
+    function handleCountryClick(country: Country) {
+      navigate("/country", {
+        state : {
+          country : country
+        }
+      });
     }
 
     const countriesList = data?.countries.map((item : Country) =>
@@ -72,7 +76,7 @@ const CountriesList: React.FC = () => {
                 </TableBody>
             </Table>
         </TableContainer>
-      )
+    )
 }
 
 export default CountriesList;
