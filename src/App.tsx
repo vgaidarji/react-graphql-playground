@@ -1,6 +1,6 @@
 import * as React from "react";
+import Routing from './routing/Routing'
 
-import CountriesList from './components/Countries/CountriesList';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 
 const client = new ApolloClient({
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <ApolloProvider client={client}>
-        <CountriesList />
+        <Routing />
       </ApolloProvider>
     </div>
   );
