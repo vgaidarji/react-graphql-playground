@@ -6,14 +6,17 @@ import { useQuery } from "@apollo/react-hooks";
 import { useLocation } from "react-router-dom";
 import { GET_COUNTRY } from '../Country/countryGqlQuery';
 
-const CountriesList: React.FC = () => {
+const Country: React.FC = () => {
     const countryParam = useLocation().state?.country;
 
     const { loading, error, data } = useQuery(GET_COUNTRY, { 
       variables: { countryCode: countryParam.code }, 
     });
     const country = data?.country;
-  
+
+    if (loading) return <h1>Loading country information...</h1>;
+    if (error) return <h1>Something went wrong!</h1>;
+
     console.log(data?.country);
 
     return (
@@ -33,4 +36,4 @@ const CountriesList: React.FC = () => {
     )
   }
   
-  export default CountriesList;
+  export default Country;

@@ -7,16 +7,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
-import { Countries } from "../../types/Countries";
-import { GET_COUNTRIES } from './countriesGqlQuery';
-import { useQuery } from "@apollo/react-hooks";
 import { Country } from "../../types/Country";
 
-const CountriesList: React.FC = () => {
+const CountriesList: React.FC = () =>{
   const navigate = useNavigate();
-  const { loading, error, data } = useQuery<Countries>(GET_COUNTRIES);
-
+  const { loading, error, data } = useLocation().state;
+  
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Something went wrong!</h1>;
 
@@ -42,14 +40,14 @@ const CountriesList: React.FC = () => {
 
     
     function handleCountryClick(country: Country) {
-      navigate("/country", {
+      navigate(`/countries/${country.code}`, {
         state : {
           country : country
         }
       });
     }
 
-    const countriesList = data?.countries.map((item : Country) =>
+    const countriesList = data.countries.map((item : Country) =>
         <StyledTableRow key={item.name} onClick={() => handleCountryClick(item)}>
             <StyledTableCell component="th" scope="row">
                 {item.name}
