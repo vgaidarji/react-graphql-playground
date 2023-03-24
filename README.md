@@ -1,7 +1,11 @@
 # Description
 
+[![Build](https://github.com/vgaidarji/react-graphql-playground/actions/workflows/main.yml/badge.svg)](https://github.com/vgaidarji/react-graphql-playground/actions/workflows/main.yml)
+
 Playground react app which uses graphql API to fetch different information. 
 For list of public graphql APIs available visit https://stepzen.com/blog/free-public-graphql-apis. 
+
+- Countries API https://countries.trevorblades.com/graphql
 
 # Getting Started with Create React App
 
