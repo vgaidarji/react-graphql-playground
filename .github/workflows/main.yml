@@ -1,0 +1,13 @@
+name: "Build & test"
+on: [pull_request]
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: NPM install
+      run: npm ci --force
+    - name: Unit tests
+      run: npm run test
+    - name: Build
+      run: npm run build
