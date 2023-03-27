@@ -1,5 +1,5 @@
 name: "Build & test"
-on: [pull_request]
+on: [push, pull_request]
 env:
   FORCE_COLOR: 2
 jobs:
