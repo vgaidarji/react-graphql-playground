@@ -1,6 +1,6 @@
 export interface Country {
-    name: string;
-    code: string;
-    capital: string;
-    emoji: string;
+  name: string;
+  code: string;
+  capital: string;
+  emoji: string;
 }

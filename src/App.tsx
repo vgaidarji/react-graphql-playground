@@ -1,11 +1,11 @@
 import * as React from "react";
-import Routing from './routing/Routing'
+import Routing from "./routing/Routing";
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
   uri: "https://countries.trevorblades.com/graphql",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 function App() {
