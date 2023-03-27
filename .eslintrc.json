@@ -35,7 +35,6 @@
     ],
     "rules": {
         "prettier/prettier" : ["error"],
-        "react/react-in-jsx-scope": "off",
-        "quotes": [2, "double", "avoid-escape"]
+        "react/react-in-jsx-scope": "off"
     }
 }

@@ -24,7 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier-fix": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "lint": "eslint src --ext .ts,.tsx",
+    "prettier": "prettier --list-different \"**/*.{ts,tsx}\"",
+    "prettier-fix": "prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write"
   },
   "browserslist": {
     "production": [
