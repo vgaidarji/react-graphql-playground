@@ -15,7 +15,7 @@ jobs:
         run: npm ci --force
       - name: Lint
         run: |
-          npm run eslint
+          npm run lint
           npm run prettier
       - name: Unit tests
         run: npm run test
