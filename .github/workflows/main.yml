@@ -18,6 +18,13 @@ jobs:
           npm run lint
           npm run prettier
       - name: Unit tests
-        run: npm run test
+        run: npm run tests-with-coverage
       - name: Build
         run: npm run build
+      - name: Upload coverage (Codecov)
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/clover.xml
+          fail_ci_if_error: true
+          verbose: true

@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "tests-with-coverage": "FORCE_COLOR=2 CI=true npm run test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .ts,.tsx",
     "prettier": "prettier --list-different \"**/*.{ts,tsx}\"",
