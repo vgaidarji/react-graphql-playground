@@ -1,8 +1,6 @@
 import Routing from "./Routing";
 import { render, screen } from "@testing-library/react";
 
-import CountriesList from "../components/countries/CountriesList";
-
 jest.mock("../components/countries/CountriesList", () => () => {
   return <>Countries component</>;
 });
