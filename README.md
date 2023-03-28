@@ -1,6 +1,6 @@
 # Description
 
-[![Build](https://github.com/vgaidarji/react-graphql-playground/actions/workflows/main.yml/badge.svg)](https://github.com/vgaidarji/react-graphql-playground/actions/workflows/main.yml) [![codecov](https://codecov.io/gh/vgaidarji/react-graphql-playground/branch/configure-code-coverage/graph/badge.svg?token=ORM7bMBo3n)](https://codecov.io/gh/vgaidarji/react-graphql-playground)
+[![Build](https://github.com/vgaidarji/react-graphql-playground/actions/workflows/main.yml/badge.svg)](https://github.com/vgaidarji/react-graphql-playground/actions/workflows/main.yml) [![codecov](https://codecov.io/gh/vgaidarji/react-graphql-playground/branch/main/graph/badge.svg?token=ORM7bMBo3n)](https://codecov.io/gh/vgaidarji/react-graphql-playground)
 
 Playground react app which uses graphql API to fetch different information.
 For list of public graphql APIs available visit https://stepzen.com/blog/free-public-graphql-apis.
