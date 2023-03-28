@@ -10,7 +10,7 @@ jest.mock("../Country/GetCountry");
 const mockedGetCountry = getCountry as jest.MockedFunction<typeof getCountry>;
 
 describe("country component", () => {
-  it("renders loading state", async () => {
+  it("should render loading state", async () => {
     const countryState = { state: { country: {} } };
     mockedGetCountry.mockReturnValueOnce([true, null as any, {} as Country]);
 
@@ -23,7 +23,7 @@ describe("country component", () => {
     expect(await screen.findByText("Loading country information...")).toBeInTheDocument();
   });
 
-  it("renders error state", async () => {
+  it("should render error state", async () => {
     const countryState = { state: { country: {} } };
     mockedGetCountry.mockReturnValueOnce([
       false,
@@ -40,7 +40,7 @@ describe("country component", () => {
     expect(await screen.findByText("Something went wrong!")).toBeInTheDocument();
   });
 
-  it("renders country successfully", async () => {
+  it("should render country", async () => {
     const countryState = { state: { country: { code: "MD" } } };
     const country = {
       name: "Moldova",

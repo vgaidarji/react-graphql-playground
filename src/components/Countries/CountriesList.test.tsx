@@ -11,7 +11,7 @@ jest.mock("../Countries/GetCountriesList");
 const mockedGetCountriesList = getCountriesList as jest.MockedFunction<typeof getCountriesList>;
 
 describe("CountriesList", () => {
-  it("renders loading state", async () => {
+  it("should render loading state", async () => {
     const isLoading = true;
     mockedGetCountriesList.mockReturnValueOnce([isLoading, null as any, {} as Countries]);
 
@@ -26,7 +26,7 @@ describe("CountriesList", () => {
     expect(await screen.findByText("Loading...")).toBeInTheDocument();
   });
 
-  it("renders error state", async () => {
+  it("should render error state", async () => {
     mockedGetCountriesList.mockReturnValueOnce([
       false,
       new ApolloError({ errorMessage: "" }),
@@ -44,7 +44,7 @@ describe("CountriesList", () => {
     expect(await screen.findByText("Something went wrong!")).toBeInTheDocument();
   });
 
-  it("renders countries successfully", async () => {
+  it("should render countries", async () => {
     const testCountries = {
       countries: [
         {

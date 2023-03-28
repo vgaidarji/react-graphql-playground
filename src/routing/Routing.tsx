@@ -8,7 +8,7 @@ const CountryComponent = lazy(() => import("../components/country/CountryCompone
 export const Routing = () => {
   return (
     <BrowserRouter>
-      <Suspense fallback={<>Loading...</>}>
+      <Suspense>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/countries" element={<CountriesList />} />
