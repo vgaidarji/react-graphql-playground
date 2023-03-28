@@ -12,6 +12,7 @@ const mockedGetCountry = getCountry as jest.MockedFunction<typeof getCountry>;
 describe("country component", () => {
   it("should render loading state", async () => {
     const countryState = { state: { country: {} } };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockedGetCountry.mockReturnValueOnce([true, null as any, {} as Country]);
 
     render(
@@ -48,6 +49,7 @@ describe("country component", () => {
       emoji: "🇲🇩",
       capital: "Chișinău"
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockedGetCountry.mockReturnValueOnce([false, null as any, country]);
 
     render(

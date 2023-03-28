@@ -1,9 +1,11 @@
 import Routing from "./Routing";
 import { render, screen } from "@testing-library/react";
 
+/* eslint-disable react/display-name */
 jest.mock("../components/countries/CountriesList", () => () => {
   return <>Countries component</>;
 });
+/* eslint-disable react/display-name */
 jest.mock("../components/country/CountryComponent", () => () => {
   return <>Country component</>;
 });

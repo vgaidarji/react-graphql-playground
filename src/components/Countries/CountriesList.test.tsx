@@ -13,6 +13,7 @@ const mockedGetCountriesList = getCountriesList as jest.MockedFunction<typeof ge
 describe("CountriesList", () => {
   it("should render loading state", async () => {
     const isLoading = true;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockedGetCountriesList.mockReturnValueOnce([isLoading, null as any, {} as Countries]);
 
     render(
@@ -67,6 +68,7 @@ describe("CountriesList", () => {
         }
       ]
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockedGetCountriesList.mockReturnValueOnce([false, null as any, testCountries]);
 
     render(
