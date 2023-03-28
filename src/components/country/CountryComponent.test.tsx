@@ -6,7 +6,7 @@ import { getCountry } from "./getCountry";
 import { ApolloError } from "@apollo/client";
 import { Country } from "../../types/Country";
 
-jest.mock("../Country/GetCountry");
+jest.mock("../country/getCountry");
 const mockedGetCountry = getCountry as jest.MockedFunction<typeof getCountry>;
 
 describe("country component", () => {
