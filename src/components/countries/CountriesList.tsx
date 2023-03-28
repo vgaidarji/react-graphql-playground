@@ -7,13 +7,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 import { Country } from "../../types/Country";
+import { getCountries } from "./getCountries";
 
 const CountriesList: React.FC = () => {
   const navigate = useNavigate();
-  const { loading, error, data } = useLocation().state;
+  const [loading, error, data] = getCountries();
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Something went wrong!</h1>;
