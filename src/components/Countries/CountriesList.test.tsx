@@ -3,31 +3,44 @@ import { render, screen } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router-dom";
 import CountriesList from "./CountriesList";
+import { getCountriesList } from "./getCountriesList";
+import { Countries } from "../../types/Countries";
+import { ApolloError } from "@apollo/client/errors";
 
-describe("countries list component", () => {
+jest.mock("../Countries/GetCountriesList");
+const mockedGetCountriesList = getCountriesList as jest.MockedFunction<typeof getCountriesList>;
+
+describe("CountriesList", () => {
   it("renders loading state", async () => {
-    const loadingState = { state: { loading: true } };
+    const isLoading = true;
+    mockedGetCountriesList.mockReturnValueOnce([isLoading, null as any, {} as Countries]);
 
     render(
-      <MemoryRouter initialEntries={[loadingState]}>
+      <MemoryRouter>
         <MockedProvider addTypename={false}>
           <CountriesList />
         </MockedProvider>
       </MemoryRouter>
     );
+
     expect(await screen.findByText("Loading...")).toBeInTheDocument();
   });
 
   it("renders error state", async () => {
-    const errorState = { state: { loading: false, error: new Error("") } };
+    mockedGetCountriesList.mockReturnValueOnce([
+      false,
+      new ApolloError({ errorMessage: "" }),
+      {} as Countries
+    ]);
 
     render(
-      <MemoryRouter initialEntries={[errorState]}>
+      <MemoryRouter>
         <MockedProvider addTypename={false}>
           <CountriesList />
         </MockedProvider>
       </MemoryRouter>
     );
+
     expect(await screen.findByText("Something went wrong!")).toBeInTheDocument();
   });
 
@@ -54,10 +67,10 @@ describe("countries list component", () => {
         }
       ]
     };
-    const successfulCase = { state: { loading: false, error: null, data: testCountries } };
+    mockedGetCountriesList.mockReturnValueOnce([false, null as any, testCountries]);
 
     render(
-      <MemoryRouter initialEntries={[successfulCase]}>
+      <MemoryRouter>
         <MockedProvider addTypename={false}>
           <CountriesList />
         </MockedProvider>
