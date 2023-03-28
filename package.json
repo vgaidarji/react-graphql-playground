@@ -45,9 +45,11 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!<rootDir>/node_modules/",
+      "!**/*.d.ts",
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
-      "!**/*.d.ts"
+      "!src/components/countries/getCountries.tsx",
+      "!src/components/country/getCountry.tsx"
     ]
   },
   "devDependencies": {

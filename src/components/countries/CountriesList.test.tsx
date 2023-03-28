@@ -3,18 +3,18 @@ import { render, screen } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router-dom";
 import CountriesList from "./CountriesList";
-import { getCountriesList } from "./getCountriesList";
+import { getCountries } from "./getCountries";
 import { Countries } from "../../types/Countries";
 import { ApolloError } from "@apollo/client/errors";
 
-jest.mock("../Countries/GetCountriesList");
-const mockedGetCountriesList = getCountriesList as jest.MockedFunction<typeof getCountriesList>;
+jest.mock("../Countries/getCountries");
+const mockedGetCountries = getCountries as jest.MockedFunction<typeof getCountries>;
 
 describe("CountriesList", () => {
   it("should render loading state", async () => {
     const isLoading = true;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mockedGetCountriesList.mockReturnValueOnce([isLoading, null as any, {} as Countries]);
+    mockedGetCountries.mockReturnValueOnce([isLoading, null as any, {} as Countries]);
 
     render(
       <MemoryRouter>
@@ -28,7 +28,7 @@ describe("CountriesList", () => {
   });
 
   it("should render error state", async () => {
-    mockedGetCountriesList.mockReturnValueOnce([
+    mockedGetCountries.mockReturnValueOnce([
       false,
       new ApolloError({ errorMessage: "" }),
       {} as Countries
@@ -69,7 +69,7 @@ describe("CountriesList", () => {
       ]
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mockedGetCountriesList.mockReturnValueOnce([false, null as any, testCountries]);
+    mockedGetCountries.mockReturnValueOnce([false, null as any, testCountries]);
 
     render(
       <MemoryRouter>
