@@ -6,7 +6,7 @@ export const Home = () => {
   const navigate = useNavigate();
 
   function handleLoadCountriesClick() {
-    navigate("/countries", {});
+    navigate("/countries");
   }
 
   return (
