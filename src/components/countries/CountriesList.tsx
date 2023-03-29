@@ -46,14 +46,15 @@ const CountriesList: React.FC = () => {
     });
   }
 
-  const countriesList = data.countries.map((item: Country) => (
+  const countriesList = data.countries.map((item: Country, index) => (
     <StyledTableRow key={item.name} onClick={() => handleCountryClick(item)}>
+      <StyledTableCell>{index}</StyledTableCell>
       <StyledTableCell component="th" scope="row">
         {item.name}
       </StyledTableCell>
-      <StyledTableCell align="right">{item.capital}</StyledTableCell>
-      <StyledTableCell align="right">{item.code}</StyledTableCell>
-      <StyledTableCell align="right">{item.emoji}</StyledTableCell>
+      <StyledTableCell align="left">{item.capital}</StyledTableCell>
+      <StyledTableCell align="left">{item.code}</StyledTableCell>
+      <StyledTableCell align="left">{item.emoji}</StyledTableCell>
     </StyledTableRow>
   ));
 
@@ -62,10 +63,11 @@ const CountriesList: React.FC = () => {
       <Table sx={{ padding: 5 }} size="small" aria-label="customized table">
         <TableHead>
           <TableRow>
+            <StyledTableCell>#</StyledTableCell>
             <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell align="right">Capital</StyledTableCell>
-            <StyledTableCell align="right">Code</StyledTableCell>
-            <StyledTableCell align="right">Emoji</StyledTableCell>
+            <StyledTableCell align="left">Capital</StyledTableCell>
+            <StyledTableCell align="left">Code</StyledTableCell>
+            <StyledTableCell align="left">Emoji</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>{countriesList}</TableBody>
