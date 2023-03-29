@@ -33,14 +33,14 @@ jobs:
           fail_ci_if_error: true
           verbose: true
       - name: Deploy to Firebase (Pull Request)
-        if: '${{ github.event_name == 'pull_request' }}'
+        if: "${{ github.event_name == 'pull_request' }}"
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT_GRAPHQL_PLAYGROUND }}"
           projectId: react-graphql-playground
       - name: Deploy to Firebase (main)
-        if: '${{ github.ref == 'ref/heads/main' }}'
+        if: "${{ github.ref == 'ref/heads/main' }}"
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
