@@ -58,6 +58,6 @@ describe("country component", () => {
       </MemoryRouter>
     );
 
-    expect(await screen.findByText("Moldova")).toBeInTheDocument();
+    expect(await screen.findByText(/moldova/i)).toBeInTheDocument();
   });
 });

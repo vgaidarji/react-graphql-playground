@@ -1,6 +1,14 @@
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
+
+const styles = {
+  stack: {
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100vh"
+  }
+};
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -10,15 +18,11 @@ export const Home = () => {
   }
 
   return (
-    <Box>
-      <Button
-        variant="outlined"
-        href="#outlined-buttons"
-        onClick={() => handleLoadCountriesClick()}
-      >
+    <Stack style={styles.stack}>
+      <Button variant="outlined" onClick={() => handleLoadCountriesClick()}>
         Load countries
       </Button>
-    </Box>
+    </Stack>
   );
 };
 
