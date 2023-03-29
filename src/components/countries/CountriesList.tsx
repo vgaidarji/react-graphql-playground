@@ -20,7 +20,7 @@ const CountriesList: React.FC = () => {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
+      backgroundColor: theme.palette.primary.light,
       color: theme.palette.common.white
     },
     [`&.${tableCellClasses.body}`]: {
@@ -59,7 +59,7 @@ const CountriesList: React.FC = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="customized table">
+      <Table sx={{ padding: 5 }} size="small" aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Name</StyledTableCell>
