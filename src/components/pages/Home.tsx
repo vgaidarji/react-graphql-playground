@@ -11,11 +11,7 @@ export const Home = () => {
 
   return (
     <Box>
-      <Button
-        variant="outlined"
-        href="#outlined-buttons"
-        onClick={() => handleLoadCountriesClick()}
-      >
+      <Button variant="outlined" onClick={() => handleLoadCountriesClick()}>
         Load countries
       </Button>
     </Box>
