@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 
 import { Country } from "../../types/Country";
-import { getCountries } from "./getCountries";
+import { getCountries } from "./getCountriesGqlRequest";
 
 const CountriesList: React.FC = () => {
   const navigate = useNavigate();
