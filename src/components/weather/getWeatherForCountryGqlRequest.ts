@@ -7,7 +7,6 @@ import { ApiClientName } from "../api/ApiEndpoint";
 export function getWeatherForCountry(
   countryName: string
 ): [boolean, ApolloError | undefined, Weather] {
-  console.log(process.env.REACT_APP_OPENWEATHERMAP_API_KEY);
   const { loading, error, data } = useQuery(GET_WEATHER_FOR_COUNTRY, {
     variables: {
       // REACT_APP_OPENWEATHERMAP_API_KEY comes from .env
