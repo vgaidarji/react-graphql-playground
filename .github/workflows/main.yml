@@ -15,6 +15,11 @@ jobs:
         with:
           node-version: 19
           cache: "npm"
+      - name: Prepare env vars
+        run: |
+          touch .env
+          echo REACT_APP_OPENWEATHERMAP_API_KEY=${{ secrets.REACT_APP_OPENWEATHERMAP_API_KEY }} > .env
+          cat .env
       - name: NPM install
         run: npm ci --force
       - name: Lint
@@ -24,7 +29,7 @@ jobs:
       - name: Unit tests
         run: npm run tests-with-coverage
       - name: Build
-        run: npm run build
+        run: cat .env && npm run build
       - name: Upload coverage (Codecov)
         uses: codecov/codecov-action@v3
         with:
