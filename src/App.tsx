@@ -4,16 +4,18 @@ import Routing from "./routing/Routing";
 import { ApolloProvider, ApolloClient, ApolloLink, InMemoryCache, HttpLink } from "@apollo/client";
 import { ApiEndpoint, ApiClientName } from "./components/api/ApiEndpoint";
 
-const countriesLink = new HttpLink({ uri: ApiEndpoint.countries });
-const openWeatherMapLink = new HttpLink({ uri: ApiEndpoint.openWeatherMap });
 const client = new ApolloClient({
-  link: ApolloLink.split(
-    (operation) => operation.getContext().clientName === ApiClientName.countries,
-    countriesLink, // <= first match if clientName matches
-    openWeatherMapLink // <= fallback
-  ),
+  link: createApolloLink(),
   cache: new InMemoryCache()
 });
+
+function createApolloLink() {
+  return ApolloLink.split(
+    (operation) => operation.getContext().clientName === ApiClientName.countries,
+    new HttpLink({ uri: ApiEndpoint.countries }), // <= first match if clientName matches
+    new HttpLink({ uri: ApiEndpoint.openWeatherMap }) // <= fallback
+  );
+}
 
 function App() {
   return (
