@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router-dom";
 import CountriesList from "./CountriesList";
-import { getCountries } from "./getCountries";
+import { getCountries } from "./getCountriesGqlRequest";
 import { Countries } from "../../types/Countries";
 import { ApolloError } from "@apollo/client/errors";
 
@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate
 }));
 
-jest.mock("../countries/getCountries");
+jest.mock("../countries/getCountriesGqlRequest");
 const mockedGetCountries = getCountries as jest.MockedFunction<typeof getCountries>;
 
 describe("CountriesList", () => {

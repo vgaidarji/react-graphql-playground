@@ -2,12 +2,14 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import CountryComponent from "./CountryComponent";
-import { getCountry } from "./getCountry";
+import { getCountry } from "./getCountryGqlRequest";
 import { ApolloError } from "@apollo/client";
 import { Country } from "../../types/Country";
 
-jest.mock("../country/getCountry");
+jest.mock("../country/getCountryGqlRequest");
 const mockedGetCountry = getCountry as jest.MockedFunction<typeof getCountry>;
+
+jest.mock("../weather/WeatherInfo");
 
 describe("country component", () => {
   it("should render loading state", async () => {

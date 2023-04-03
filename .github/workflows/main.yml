@@ -15,6 +15,10 @@ jobs:
         with:
           node-version: 19
           cache: "npm"
+      - name: Prepare env vars
+        run: |
+          touch .env
+          echo REACT_APP_OPENWEATHERMAP_API_KEY=${{ secrets.REACT_APP_OPENWEATHERMAP_API_KEY }} > .env
       - name: NPM install
         run: npm ci --force
       - name: Lint

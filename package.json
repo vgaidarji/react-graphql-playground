@@ -48,8 +48,8 @@
       "!**/*.d.ts",
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
-      "!src/components/countries/getCountries.tsx",
-      "!src/components/country/getCountry.tsx"
+      "!**/*GqlQuery.{ts,tsx}",
+      "!**/*GqlRequest.{ts,tsx}"
     ]
   },
   "devDependencies": {
