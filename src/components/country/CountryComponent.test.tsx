@@ -11,7 +11,7 @@ const mockedGetCountry = getCountry as jest.MockedFunction<typeof getCountry>;
 
 jest.mock("../weather/WeatherInfo");
 
-describe("country component", () => {
+describe("Country component", () => {
   it("should render loading state", async () => {
     const countryState = { state: { country: {} } };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

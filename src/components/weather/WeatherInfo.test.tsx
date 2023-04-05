@@ -10,7 +10,7 @@ const mockedGetWeatherForCountry = getWeatherForCountry as jest.MockedFunction<
   typeof getWeatherForCountry
 >;
 
-describe("weather info component", () => {
+describe("WeatherInfo component", () => {
   it("should render loading state", async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockedGetWeatherForCountry.mockReturnValueOnce([true, null as any, {} as Weather]);
