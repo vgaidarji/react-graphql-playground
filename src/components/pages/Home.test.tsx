@@ -8,7 +8,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate
 }));
 
-describe("Home Page", () => {
+describe("Home page", () => {
   it("should render load countries button", async () => {
     render(
       <MemoryRouter>

@@ -16,7 +16,7 @@ jest.mock("react-router-dom", () => ({
 jest.mock("../countries/getCountriesGqlRequest");
 const mockedGetCountries = getCountries as jest.MockedFunction<typeof getCountries>;
 
-describe("CountriesList", () => {
+describe("CountriesList component", () => {
   it("should render loading state", async () => {
     const isLoading = true;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

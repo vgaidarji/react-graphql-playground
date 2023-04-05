@@ -1,4 +1,4 @@
-name: "Build & test"
+name: "Main workflow"
 on:
   pull_request:
   push:
@@ -7,7 +7,7 @@ on:
 env:
   FORCE_COLOR: 2
 jobs:
-  build_and_deploy:
+  build_test_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,6 +27,26 @@ jobs:
           npm run prettier
       - name: Unit tests
         run: npm run tests-with-coverage
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v5
+        with:
+          install: false
+          config: baseUrl=http://localhost:3000
+          start: npm start
+          command: npx cypress run
+          browser: chrome
+      - name: Archive Cypress screenshots (on failure)
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - name: Archive Cypress video recordings
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
       - name: Build
         run: npm run build
       - name: Upload coverage (Codecov)
