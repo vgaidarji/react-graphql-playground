@@ -31,6 +31,8 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
+          config: baseUrl=http://localhost:3000
+          start: npm start
           command: npx cypress run
           browser: chrome
       - name: Archive Cypress screenshots (on failure)
