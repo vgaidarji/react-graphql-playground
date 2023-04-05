@@ -30,6 +30,7 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
         with:
+          install: false
           command: npx cypress run
           browser: chrome
       - name: Archive Cypress screenshots (on failure)
