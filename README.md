@@ -7,6 +7,16 @@ For list of public graphql APIs available visit https://stepzen.com/blog/free-pu
 
 - Countries API https://countries.trevorblades.com/graphql
 
+Technologies/frameworks used:
+
+- Typescript
+- React
+- Material UI
+- GraphQL
+- Jest
+- Eslint + Prettier
+- Cypress
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
