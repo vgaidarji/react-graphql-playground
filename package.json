@@ -3,8 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "workspaces": [
-        "packages/api",
-        "packages/frontend"
+        "packages/*"
     ],
     "dependencies": {
         "typescript": "^5.0.4"
