@@ -7,8 +7,65 @@ on:
 env:
   FORCE_COLOR: 2
 jobs:
-  frontent_build_test_deploy:
+  lint:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+          cache: "npm"
+      - name: NPM install
+        run: npm ci --force
+      - name: Lint
+        run: |
+          npm run lint
+          npm run prettier
+  api:
+    runs-on: ubuntu-latest
+    needs: lint
+    defaults:
+      run:
+        working-directory: packages/api
+    steps:
+      - uses: actions/checkout@v3
+  e2e:
+    runs-on: ubuntu-latest
+    needs: lint
+    defaults:
+      run:
+        working-directory: packages/e2e
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+          cache: "npm"
+      - name: NPM install
+        run: npm ci
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v5
+        with:
+          install: false
+          config: baseUrl=http://localhost:3000
+          start: cd ../frontend && npm start && cd ../e2e
+          command: npx cypress run
+          browser: chrome
+      - name: Archive Cypress screenshots (on failure)
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - name: Archive Cypress video recordings
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+  frontend:
+    runs-on: ubuntu-latest
+    needs: lint
     defaults:
       run:
         working-directory: packages/frontend
@@ -24,32 +81,8 @@ jobs:
           echo REACT_APP_OPENWEATHERMAP_API_KEY=${{ secrets.REACT_APP_OPENWEATHERMAP_API_KEY }} > .env
       - name: NPM install
         run: npm ci --force
-      - name: Lint
-        run: |
-          npm run lint
-          npm run prettier
       - name: Unit tests
         run: npm run tests-with-coverage
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v5
-        with:
-          install: false
-          config: baseUrl=http://localhost:3000
-          start: npm start
-          command: npx cypress run
-          browser: chrome
-      - name: Archive Cypress screenshots (on failure)
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      - name: Archive Cypress video recordings
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
       - name: Build
         run: npm run build
       - name: Upload coverage (Codecov)
