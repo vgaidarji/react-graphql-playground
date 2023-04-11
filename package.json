@@ -1,11 +1,28 @@
 {
-    "name": "@react-graphql-playground/monorepo",
-    "private": true,
-    "version": "1.0.0",
-    "workspaces": [
-        "packages/*"
-    ],
-    "dependencies": {
-        "typescript": "^5.0.4"
-    }
+  "name": "@react-graphql-playground/monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "typescript": "^5.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-cypress": "^2.13.2",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.7"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
+    "prettier": "prettier --list-different \"**/*.{ts,tsx}\"",
+    "prettier-fix": "prettier --config .prettierrc '**/*.{ts,tsx}' --write"
+  }
 }
