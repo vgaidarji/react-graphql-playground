@@ -1,0 +1,14 @@
+{
+    "name": "e2e",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "typescript": "^5.0.4",
+      "cypress": "^12.9.0"
+    }
+  }
+  

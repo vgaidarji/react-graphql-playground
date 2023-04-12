@@ -15,7 +15,6 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:cypress/recommended",
     "prettier"
   ],
   "overrides": [],
@@ -26,9 +25,9 @@
       "jsx": true
     },
     "sourceType": "module",
-    "project": ["tsconfig.json"]
+    "project": ["./tsconfig.json"]
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "cypress"],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": ["error"],
     "react/react-in-jsx-scope": "off",

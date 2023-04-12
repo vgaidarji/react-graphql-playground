@@ -13,9 +13,11 @@ Technologies/frameworks used:
 - React
 - Material UI
 - GraphQL
+- Express
 - Jest
 - Eslint + Prettier
 - Cypress
+- NPM workspaces
 
 # Getting Started with Create React App
 
