@@ -32,9 +32,6 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     needs: lint
-    defaults:
-      run:
-        working-directory: packages/e2e
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -42,15 +39,12 @@ jobs:
           node-version: 19
           cache: "npm"
       - name: NPM install
-        run: npm ci
+        run: npm ci --force
+      - name: Start application
+        run: cd packages/frontend && npm start
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v5
-        with:
-          install: false
-          config: baseUrl=http://localhost:3000
-          start: cd ../frontend && npm start && cd ../e2e
-          command: npx cypress run
-          browser: chrome
+        run: |
+          cd ../e2e && npx cypress run
       - name: Archive Cypress screenshots (on failure)
         uses: actions/upload-artifact@v3
         if: failure()
