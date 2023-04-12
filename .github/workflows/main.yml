@@ -40,11 +40,16 @@ jobs:
           cache: "npm"
       - name: NPM install
         run: npm ci --force
-      - name: Start application
-        run: cd packages/frontend && npm start
       - name: Run Cypress tests
-        run: |
-          cd ../e2e && npx cypress run
+        uses: cypress-io/github-action@v5
+        working-directory: packages/frontend
+        with:
+          install: false
+          config: baseUrl=http://localhost:3000
+          start: npm start
+          command: npx cypress run
+          browser: chrome
+          project: ./packages/e2e
       - name: Archive Cypress screenshots (on failure)
         uses: actions/upload-artifact@v3
         if: failure()
