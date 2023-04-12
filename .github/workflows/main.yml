@@ -41,6 +41,7 @@ jobs:
       - name: NPM install
         run: npm ci --force
       - name: Start web app (in background)
+        working-directory: packages/frontend
         run: (npm run start&)
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
@@ -49,7 +50,7 @@ jobs:
           config: baseUrl=http://localhost:3000
           command: npx cypress run
           browser: chrome
-          project: ./packages/e2e
+          working-directory: packages/e2e
       - name: Archive Cypress screenshots (on failure)
         uses: actions/upload-artifact@v3
         if: failure()
