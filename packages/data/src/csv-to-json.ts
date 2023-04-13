@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { parse } from "csv-parse";
+import { parse } from "csv-parse/sync";
 
 // exported from https://data.worldbank.org/indicator/SP.POP.TOTL?end=2021&start=2021&view=map
 // first row: "Data Source","World Development Indicators",
@@ -21,39 +21,30 @@ function transformColumnName(column: string): string {
   return column.charAt(0).toLocaleLowerCase() + column.slice(1).replace(/\s+/g, "");
 }
 
-function readPopulationCsvToJson(callback: Function) {
-  const csvFilePath = path.resolve(__dirname, POPULATION_CSV);
-  const fileContent = fs.readFileSync(csvFilePath, { encoding: FILES_ENCODING });
-  parse(
-    fileContent,
-    {
-      delimiter: ",",
-      skip_empty_lines: true,
-      relax_quotes: true,
-      columns: (header) => header.map((column: string) => transformColumnName(column)),
-      fromLine: 5
-    },
-    (_error, result) => {
-      callback(result);
-    }
-  );
+function readPopulationCsvToJson(csvFilePath: string): string {
+  const csvPath = path.resolve(__dirname, csvFilePath);
+  const fileContent = fs.readFileSync(csvPath, { encoding: FILES_ENCODING });
+  return parse(fileContent, {
+    delimiter: ",",
+    skip_empty_lines: true,
+    relax_quotes: true,
+    columns: (header) => header.map((column: string) => transformColumnName(column)),
+    fromLine: 5
+  });
 }
 
 function formatJson(json: string): string {
-  let formattedJson = JSON.stringify(json, null, 2);
-  console.log("Result", formattedJson);
-  return formattedJson;
+  return JSON.stringify(json, null, 2);
 }
 
-function writeJsonToFile(json: string) {
-  const jsonPath = path.resolve(__dirname, POPULATION_JSON);
+export function writeJsonToFile(json: string, jsonFilePath: string) {
+  const jsonPath = path.resolve(__dirname, jsonFilePath);
   fs.writeFileSync(jsonPath, json, FILES_ENCODING);
 }
 
-function csvToJson() {
-  readPopulationCsvToJson(function (result: string) {
-    writeJsonToFile(formatJson(result));
-  });
+export function csvToJson(csvFilePath = POPULATION_CSV, jsonFilePath = POPULATION_JSON) {
+  let parsedJson = readPopulationCsvToJson(csvFilePath);
+  writeJsonToFile(formatJson(parsedJson), jsonFilePath);
 }
 
 csvToJson();
