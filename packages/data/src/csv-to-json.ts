@@ -43,7 +43,7 @@ export function writeJsonToFile(json: string, jsonFilePath: string) {
 }
 
 export function csvToJson(csvFilePath = POPULATION_CSV, jsonFilePath = POPULATION_JSON) {
-  let parsedJson = readPopulationCsvToJson(csvFilePath);
+  const parsedJson = readPopulationCsvToJson(csvFilePath);
   writeJsonToFile(formatJson(parsedJson), jsonFilePath);
 }
 
