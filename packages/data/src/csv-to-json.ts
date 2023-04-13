@@ -50,8 +50,10 @@ function writeJsonToFile(json: string) {
   fs.writeFileSync(jsonPath, json, FILES_ENCODING);
 }
 
-(() => {
+function csvToJson() {
   readPopulationCsvToJson(function (result: string) {
     writeJsonToFile(formatJson(result));
   });
-})();
+}
+
+csvToJson();
