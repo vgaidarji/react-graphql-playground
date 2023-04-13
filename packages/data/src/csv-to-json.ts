@@ -9,25 +9,21 @@ import { parse } from "csv-parse";
 // fourth row (columns): "Country Name","Country Code","Indicator Name","Indicator Code","1960",...,"2021",
 // (data)
 const POPULATION_CSV = "../API_SP.POP.TOTL_DS2_en_csv_v2_5358404.csv";
+const POPULATION_JSON = "../population.json";
+const FILES_ENCODING = "utf-8";
 
-type CountryPopulation = {
-  countryName: string;
-  countryCode: string;
-  indicatorName: string;
-  indicatorCode: number;
-  1960: string;
-};
-
+/**
+ * Removes spaces from column name and lowercases first character. E.g. "Country Name" -> "countryName".
+ * @param column column name from parsed CSV file
+ * @returns
+ */
 function transformColumnName(column: string): string {
-  // "Country Name" -> "countryName"
-  // remove space and lower first char case
   return column.charAt(0).toLocaleLowerCase() + column.slice(1).replace(/\s+/g, "");
 }
 
-(() => {
+function readPopulationCsvToJson(callback: Function) {
   const csvFilePath = path.resolve(__dirname, POPULATION_CSV);
-  const fileContent = fs.readFileSync(csvFilePath, { encoding: "utf-8" });
-
+  const fileContent = fs.readFileSync(csvFilePath, { encoding: FILES_ENCODING });
   parse(
     fileContent,
     {
@@ -37,11 +33,25 @@ function transformColumnName(column: string): string {
       columns: (header) => header.map((column: string) => transformColumnName(column)),
       fromLine: 5
     },
-    (error, result: CountryPopulation[]) => {
-      if (error) {
-        console.error(error);
-      }
-      console.log("Result", JSON.stringify(result));
+    (_error, result) => {
+      callback(result);
     }
   );
+}
+
+function formatJson(json: string): string {
+  let formattedJson = JSON.stringify(json, null, 2);
+  console.log("Result", formattedJson);
+  return formattedJson;
+}
+
+function writeJsonToFile(json: string) {
+  const jsonPath = path.resolve(__dirname, POPULATION_JSON);
+  fs.writeFileSync(jsonPath, json, FILES_ENCODING);
+}
+
+(() => {
+  readPopulationCsvToJson(function (result: string) {
+    writeJsonToFile(formatJson(result));
+  });
 })();
