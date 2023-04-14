@@ -28,7 +28,7 @@ describe("csv-to-json", () => {
   it("reads csv to json successfully", () => {
     mockedReadFileSync.mockReturnValueOnce(inputCsv);
 
-    csvToJson(`${__dirname}/fixtures/input.csv`, `${__dirname}/out.json`);
+    csvToJson();
 
     expect(mockedWriteFileSync).toBeCalledWith(expect.anything(), outJson, expect.anything());
   });

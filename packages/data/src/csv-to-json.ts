@@ -8,8 +8,8 @@ import { parse } from "csv-parse/sync";
 // third row: "Last Updated Date","2023-03-01",
 // fourth row (columns): "Country Name","Country Code","Indicator Name","Indicator Code","1960",...,"2021",
 // (data)
-const POPULATION_CSV = "../API_SP.POP.TOTL_DS2_en_csv_v2_5358404.csv";
-const POPULATION_JSON = "../population.json";
+const POPULATION_CSV = "../files/API_SP.POP.TOTL_DS2_en_csv_v2_5358404.csv";
+const POPULATION_JSON = "../files/population.json";
 const FILES_ENCODING = "utf-8";
 
 /**

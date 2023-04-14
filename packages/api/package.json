@@ -16,5 +16,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "data": "^1.0.0"
   }
 }
