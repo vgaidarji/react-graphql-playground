@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Country } from "../../types/Country";
 import { getCountries } from "./getCountriesGqlRequest";
+import { fetchPopulation } from "../api/PopulationApi";
 
 const CountriesList: React.FC = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const CountriesList: React.FC = () => {
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Something went wrong!</h1>;
+
+  fetchPopulation();
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
