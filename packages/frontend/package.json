@@ -47,7 +47,10 @@
       "!src/reportWebVitals.ts",
       "!**/*GqlQuery.{ts,tsx}",
       "!**/*GqlRequest.{ts,tsx}"
-    ]
+    ],
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -55,6 +58,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
+    "axios": "^1.3.5",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
@@ -64,8 +68,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
-    "prettier": "^2.8.7",
     "jest": "^27.5.1",
+    "prettier": "^2.8.7",
     "typescript": "^5.0.2"
   }
 }
