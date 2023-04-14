@@ -47,7 +47,10 @@
       "!src/reportWebVitals.ts",
       "!**/*GqlQuery.{ts,tsx}",
       "!**/*GqlRequest.{ts,tsx}"
-    ]
+    ],
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
